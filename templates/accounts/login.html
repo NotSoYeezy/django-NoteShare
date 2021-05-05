@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/input.css'%}">
+    <script src="https://kit.fontawesome.com/88dec51e8e.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block body_block %}
+     <div id='inputDiv'>
+         <p>{{error_tag}}</p>
+         <img src="{%static "images/cover.svg"%}" width="370" id='logo' />
+         <div class="social">
+             <ul>
+                 <li class="facebook"><a href="{% url 'social:begin' "facebook" %}"><i class="fab fa-facebook-f"></i>Login with facebook</a></li>
+             </ul>
+         </div>
+        <form method="POST">
+            {%csrf_token%}
+            <label for="username">Username:</label>
+            <p><input type="text" name="username" class="loginInput" autocomplete="off"/></p>
+            <label for="password">Password:</label>
+            <p><input type="password" name="password" class="loginInput"/></p>
+            <input type="submit" value="Login"/>
+        </form>
+     </div>
+{% endblock %}

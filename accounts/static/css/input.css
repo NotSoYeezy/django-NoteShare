@@ -1,0 +1,163 @@
+*{
+    margin:0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#inputDiv {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    background: #cb45f7;
+    margin-top: 100px;
+    border-radius: 67% 33% 39% 61% / 39% 38% 62% 61% ;
+    width: 700px;
+    height: 785px;
+	box-shadow: 5px 10px 8px #888888;
+}
+
+#logo{
+    margin: 0 auto;
+}
+
+#linkDiv{
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-self: center;
+    color: black;
+    font-weight: bold;
+}
+
+#linkDiv a{
+    color: black;
+    text-decoration: underline;
+}
+
+#linkDiv a:hover{
+   color: pink;
+}
+
+label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-self: flex-start;
+}
+
+form{
+    text-align: center;
+}
+
+.loginInput{
+    font-size: 1.2em;
+    width: 300px;
+    height: 40px;
+    outline: none;
+    margin-bottom: 25px;
+    border:none;
+    border-radius: 15px;
+}
+
+.loginInput:focus{
+    opacity:0.9;
+}
+
+input[type=submit]{
+    font-weight: bold;
+    border: none;
+    background: none;
+    border-bottom:2px solid black;
+    width: 130px;
+    height: 45px;
+    font-size: large;
+    outline:none;
+}
+
+input[type=submit]:hover {
+    border-bottom: 2px solid pink;
+    color: pink;
+    }
+
+ul {
+    list-style: none;
+}
+
+#back-links a{
+    color: white;
+    text-decoration: none;
+}
+
+#back-links a:hover{
+    opacity: 0.5;
+}
+
+ #id_profile_pic {
+  color: transparent;
+}
+#id_profile_pic::-webkit-file-upload-button {
+  visibility: hidden;
+}
+#id_profile_pic::before {
+  content: 'Select some files';
+  color: black;
+  display: inline-block;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 15px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 10pt;
+}
+#id_profile_pic:hover::before {
+  border-color: black;
+}
+#id_profile_pic:active {
+  outline: 0;
+}
+#id_profile_pic:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+
+.facebook{
+    margin-bottom: 20px;
+}
+
+.facebook a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.facebook a:hover{
+    opacity: 0.5;
+}
+
+.facebook i{
+    margin-right: 20px;
+}
+
+@media (max-width: 600px){
+    #inputDiv{
+        width: 450px;
+        height: 575px;
+    }
+}
+

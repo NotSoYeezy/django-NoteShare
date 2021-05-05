@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load  static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/input.css' %}">
+    <script src="https://kit.fontawesome.com/88dec51e8e.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block body_block %}
+     <div id='inputDiv'>
+            <img src="{%static "images/cover.svg"%}" width="370" id='logo'>
+            {%if registered%}
+            <h1>THANK YOU FOR REGISTERING!</h1>
+                <div id="back-links">
+                <a href="{% url 'accounts:login' %}">Go to Login page</a>
+                <a href="{% url 'index' %}">Go to home page</a>
+                </div>
+            {%else%}
+                <div class="social">
+                    <ul>
+                        <li class="facebook"><a href="{% url 'social:begin' "facebook" %}"><i class="fab fa-facebook-f"></i>Login with facebook</a></li>
+                    </ul>
+                </div>
+            <form method="post" enctype="multipart/form-data">
+                {{user_form.as_p}}
+                {%csrf_token%}
+                <input type="submit" value="Register"/>
+            </form>
+            {%endif%}
+     </div>
+{% endblock %}
+
+<!--
+style="color: white; text-decoration: none" onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=1
+--->
