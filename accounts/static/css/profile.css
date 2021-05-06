@@ -1,0 +1,32 @@
+p{
+    font-weight: bold;
+}
+
+#profile_div {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5.5vw;
+}
+
+#profile_div img{
+    border-radius: 50% 50%;
+}
+
+#bio-div{
+    width: 60%;
+    max-width: 700px;
+    text-align: justify;
+}
+
+#user-edit{
+    color: #cb45f7;
+    text-decoration: none;
+}
+
+#user-edit:hover{
+    opacity: 0.5;
+}
+

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% block body_block %}
+    <div id="profile_div">
+        {% if user.profile_pic %}
+            <img src={{ user.profile_pic.url }} width="200" height="200" alt="Profile picture ">
+        {% endif %}
+        <h1>{{ user.username }} <a id="user-edit" href="#"><i class="fas fa-user-edit"></i></a></h1>
+        <h2>About me:</h2>
+        <div id="bio-div">
+            <p>{{ user.bio|linebreaksbr }}</p>
+        </div>
+    </div>
+    <div id="note_div">
+        <h1>My notes:</h1>
+    </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import UpdateView
 from accounts.models import User
 
 
@@ -10,4 +11,4 @@ def user_profile(request, username):
         'user': user
     }
 
-    return render()
+    return render(request, 'profiles/user_profile.html', context)
