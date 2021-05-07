@@ -11,7 +11,7 @@ TODO: Dodaj ikone search do "search bara"!
                 <input type="text" id='searchInput' placeholder="Search" autocomplete="off">
                 {%if user.is_authenticated%}
 
-                    <a href="{% url 'profile' username=user.username%}">Hello {{user.username}}</a>
+                    <a href="{% url 'profile' pk=user.pk%}">Hello {{user.username}}</a>
                     <a href="{% url 'accounts:logout' %}" id="logInA">Logout</a>
 
                 {%else%}

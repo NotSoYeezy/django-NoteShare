@@ -9,7 +9,7 @@ class MyUserAdmin(UserAdmin):
     model = User
 
     fieldsets = UserAdmin.fieldsets + (
-            (None, {'fields': ('bio', 'profile_pic',)}),
+            (None, {'fields': ('bio', 'profile_pic', )}),
     )
 
 

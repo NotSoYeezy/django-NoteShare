@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head_block %}
+{% load  static %}
+    <link rel="stylesheet" href="{% static 'css/input.css' %}">
+{% endblock %}
+{% block body_block %}
+    <div id="inputDiv">
+            <form method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Update">
+        </form>
+    </div>
+{% endblock %}

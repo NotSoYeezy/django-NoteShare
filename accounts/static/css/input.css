@@ -154,6 +154,24 @@ ul {
     margin-right: 20px;
 }
 
+textarea{
+    outline: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 10px;
+    width: 20vw;
+    text-align: justify;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5; }
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #4285F4; }
+
 @media (max-width: 600px){
     #inputDiv{
         width: 450px;

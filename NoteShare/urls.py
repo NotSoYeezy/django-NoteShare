@@ -25,7 +25,8 @@ urlpatterns = [
     path('social-auth/', include('social_django.urls', namespace='social')),
     path('', views.Index.as_view(), name='index'),
     path('accounts/', include('accounts.urls')),
-    path('user/<str:username>', profile_views.user_profile, name='profile')
+    path('user/<str:pk>/', profile_views.user_profile, name='profile'),
+    path('user/<str:pk>/update/', profile_views.UpdateUserView.as_view(), name='profile_update')
 ]
 
 if settings.DEBUG:

@@ -27,3 +27,4 @@ class UserSignupForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Passwords do not match"
             )
+
