@@ -1,22 +1,25 @@
 from django.urls import reverse_lazy
 from . import models
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views.generic import TemplateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth import update_session_auth_hash
+from .forms import UserChangePassword
 
 app_name = 'accounts'
 
 
+# TODO: Dodaj resetowanie i zmiany hasła!
 class LoginView(View):
 
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(request=request, username=username, password=password)
 
         if user is not None:
             if user.is_active:
@@ -54,3 +57,19 @@ def user_register(request):
             print(user_form.errors)
 
     return render(request, 'accounts/register.html', {'user_form': user_form, 'registered': registered})
+
+
+# login required
+def change_password(request):
+    if request.method == 'POST':
+        form = UserChangePassword(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return HttpResponseRedirect(reverse('profile', kwargs={'pk': request.user.pk}))
+        else:
+            print(form.errors)
+    else:
+        form = UserChangePassword(request.user)
+
+    return render(request, 'accounts/change_password.html', {'form': form})

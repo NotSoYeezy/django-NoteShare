@@ -16,6 +16,7 @@ def user_profile(request, pk):
     return render(request, 'profiles/user_profile.html', context)
 
 
+# TODO: Add option to change username - currently gives UNIQUE constraint failed: accounts_user.email
 class UpdateUserView(UpdateView, LoginRequiredMixin):
     login_url = '/login/'
     model = User
