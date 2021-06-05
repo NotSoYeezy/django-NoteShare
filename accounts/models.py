@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.shortcuts import reverse
 
 
+# TODO: Dodaj usuwanie profilowego z dysku
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(unique=True, max_length=100, primary_key=True)
@@ -21,4 +22,5 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.display_name is None:
             self.display_name = self.username
+
         super(User, self).save(*args, **kwargs)

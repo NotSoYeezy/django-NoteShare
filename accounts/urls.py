@@ -3,11 +3,10 @@ from . import views
 from django.contrib.auth import views as auth_views
 from .forms import UserPasswordResetForm, UserSetPasswordForm
 
-# TODO: Dodaj customowe formularze do ustawiania hasła!
 
 app_name = 'accounts'
 
-urlpatterns=[
+urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('signup/', views.user_register, name='register'),

@@ -13,7 +13,6 @@ from .forms import UserChangePassword
 app_name = 'accounts'
 
 
-# TODO: Dodaj resetowanie i zmiany hasła!
 class LoginView(View):
 
     def post(self, request):

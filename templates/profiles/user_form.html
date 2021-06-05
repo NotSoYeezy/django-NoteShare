@@ -8,7 +8,11 @@
             <form method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
+            <br>
+            <a href="{% url 'accounts:change_password' %}">Change password</a>
+            <br>
             <input type="submit" value="Update">
         </form>
+
     </div>
 {% endblock %}

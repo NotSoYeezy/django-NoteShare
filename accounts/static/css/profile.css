@@ -30,3 +30,64 @@ p{
     opacity: 0.5;
 }
 
+#notes_div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#create_note{
+    color: #cb45f7;
+    text-decoration: none;
+}
+
+#create_note:hover{
+    opacity: 0.5;
+}
+
+.note{
+    margin-left: 25px;
+    text-align: center;
+}
+
+.note a{
+    color: black;
+    text-decoration: none;
+    font-weight: 750;
+}
+
+.note a:hover{
+    opacity: 0.75;
+}
+
+.note img{
+    width: 300px;
+    height: 300px;
+    border-radius: 2%;
+}
+
+
+#navig-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-a{
+    margin-right: auto;
+}
+
+#navig-div a{
+    text-decoration: none;
+    font-size: 30px;
+}
+
+#navig-links a{
+    margin-right: 20px;
+    color: #cb45f7;
+}
+
+#navig-links a:hover{
+    opacity: 0.5;
+}

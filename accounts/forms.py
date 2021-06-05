@@ -64,5 +64,5 @@ class UserChangePassword(PasswordChangeForm):
         super(UserChangePassword, self).__init__(*args, **kwargs)
 
     old_password = forms.CharField(label='Old password', widget=forms.PasswordInput(attrs={'class': 'loginInput'}))
-    new_password1 = forms.CharField(label='Old password', widget=forms.PasswordInput(attrs={'class': 'loginInput'}))
-    new_password2 = forms.CharField(label='Old password', widget=forms.PasswordInput(attrs={'class': 'loginInput'}))
+    new_password1 = forms.CharField(label='New password', widget=forms.PasswordInput(attrs={'class': 'loginInput'}))
+    new_password2 = forms.CharField(label='Confirm new password', widget=forms.PasswordInput(attrs={'class': 'loginInput'}))

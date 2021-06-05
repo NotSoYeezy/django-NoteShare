@@ -4,6 +4,17 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 {% block body_block %}
+    <nav>
+
+        <div id="navig-div">
+            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/cover.svg"%}" width="370" id='logo'></a>
+            <div id="navig-links">
+                <a href="#">Find notes</a>
+                <a href="{% url 'information' %}">Informations</a>
+            </div>
+        </div>
+
+    </nav>
     <div id="profile_div">
         {% if user_profile.profile_pic %}
             <img src={{ user_profile.profile_pic.url }} width="200" height="200" alt="Profile picture ">
@@ -22,8 +33,18 @@
             <h2>User has not provided BIO</h2>
             {% endif %}
     </div>
-    <div id="note_div">
-        <h1>My notes:</h1>
-    </div>
+        <h1>My notes: <a id='create_note' href="{% url 'notes:create_note' %}"><i class="fas fa-plus"></i></a></h1>
+        {% if notes %}
+        <div id="notes_div">
+        {% for note in notes %}
+            <div class="note">
+            <a href="#">
+                <h1>{{ note.title }}</h1>
+                <img src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }}' can't be rendered exist">
+            </a>
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
 {% endblock %}
 

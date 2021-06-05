@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head_block %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/input.css' %}">
+{% endblock %}
+{% block body_block %}
+    <div id="note-div">
+    <form method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create">
+    </form>
+    </div>
+{% endblock %}

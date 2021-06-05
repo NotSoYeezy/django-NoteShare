@@ -19,6 +19,8 @@
             <p><input type="text" name="username" class="loginInput" autocomplete="off"/></p>
             <label for="password">Password:</label>
             <p><input type="password" name="password" class="loginInput"/></p>
+            <a href="{% url 'accounts:password_reset' %}">Forgot password</a>
+            <br>
             <input type="submit" value="Login"/>
         </form>
      </div>
