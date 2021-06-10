@@ -2,7 +2,8 @@ from django.db import models
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-
+from django.utils.text import slugify
+from django_unique_slugify import unique_slugify
 
 # Własne importy
 from .validators import check_file_extension
@@ -28,6 +29,11 @@ class Note(models.Model):
     thumbnail = models.ImageField(upload_to='thumbnails')
     content_file = models.FileField(upload_to='notes', blank=True, null=True, validators=[check_file_extension])
     content_text = models.TextField(max_length=1000, blank=True, null=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        unique_slugify(self, self.title)
+        super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

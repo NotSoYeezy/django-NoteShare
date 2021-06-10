@@ -30,7 +30,7 @@ urlpatterns = [
     path('user/<str:pk>/', profile_views.user_profile, name='profile'),
     path('user/<str:pk>/update/', profile_views.UpdateUserView.as_view(), name='profile_update'),
 
-    path('notes/', include('notes.urls'))
+    path('Notes/', include('notes.urls'))
 ]
 
 if settings.DEBUG:

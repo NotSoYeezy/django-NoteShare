@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Note
 from .forms import NoteCreateForm
@@ -19,3 +19,8 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
         content_file = self.request.FILES['content_file']
         form.save()
         return success_url
+
+
+class NoteDetailView(DetailView):
+    model = Note
+    template_name = 'notes/note_detail.html'

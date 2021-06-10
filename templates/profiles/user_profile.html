@@ -33,14 +33,14 @@
             <h2>User has not provided BIO</h2>
             {% endif %}
     </div>
-        <h1>My notes: <a id='create_note' href="{% url 'notes:create_note' %}"><i class="fas fa-plus"></i></a></h1>
+        <h1>{{ user_profile.username }}'s notes: <a id='create_note' href="{% url 'notes:create_note' %}"><i class="fas fa-plus"></i></a></h1>
         {% if notes %}
-        <div id="notes_div">
+        <div {{ user }} id="notes_div">
         {% for note in notes %}
             <div class="note">
-            <a href="#">
+            <a href="{% url 'notes:detail_note' slug=note.slug %}">
                 <h1>{{ note.title }}</h1>
-                <img src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }}' can't be rendered exist">
+                <img src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }}' can't be rendered">
             </a>
             </div>
         {% endfor %}
