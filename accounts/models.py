@@ -9,7 +9,7 @@ from django.shortcuts import reverse
 class User(AbstractUser):
     username = models.CharField(unique=True, max_length=100, primary_key=True)
     display_name = models.CharField(unique=True, max_length=100, blank=True, null=True)
-    email = models.EmailField(unique=True, max_length=100)
+    email = models.EmailField(unique=True, max_length=100   )
     bio = models.TextField(blank=True, max_length=600, null=True)
     profile_pic = models.ImageField(upload_to='profile_pics', default='profile_pics/default.png')
 
