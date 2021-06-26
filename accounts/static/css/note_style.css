@@ -1,0 +1,9 @@
+#note_title{
+    font-size: 60px;
+    font-weight: 850;
+}
+
+#the-canvas {
+    border: 1px solid black;
+    direction: ltr;
+  }
