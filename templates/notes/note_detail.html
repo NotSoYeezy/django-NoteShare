@@ -8,6 +8,14 @@
     <div id="note_div">
         <div id="note_header">
                 <h1 id="note_title">{{note.title}}</h1>
+        {% if user.username == note.author.username%}
+            <form method="POST" action='{% url 'notes:delete_note' slug=note.slug %}'>
+                {% csrf_token %}
+                <input type="submit" value="DELETE">
+            </form>
+        {% endif %}
+        </div>
+        <div id="note_content">
                 <button id="prev">Previous</button>
                 <button id="next">Next</button>
                 &nbsp; &nbsp;
@@ -121,6 +129,6 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 });
 </script>
     {% else %}
-    <h1>No note file</h1>
+    <!---TODO: Add displaying note text content--->
     {% endif %}
 {% endblock %}

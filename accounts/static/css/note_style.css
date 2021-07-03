@@ -1,3 +1,7 @@
+#note_div{
+    margin-top: 2.5vw;
+}
+
 #note_title{
     font-size: 60px;
     font-weight: 850;
@@ -6,4 +10,14 @@
 #the-canvas {
     border: 1px solid black;
     direction: ltr;
+  }
+
+  @media screen and (max-width: 500px) {
+      #note_div{
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          justify-items: center;
+          flex-direction: column;
+      }
   }
