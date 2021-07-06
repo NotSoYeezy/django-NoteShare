@@ -1,5 +1,17 @@
-#note_div{
-    margin-top: 2.5vw;
+body{
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+}
+
+#main_div{
+    display: flex;
+
+}
+
+
+#note_content{
+    margin-top: 10px;
 }
 
 #note_title{
@@ -7,17 +19,109 @@
     font-weight: 850;
 }
 
+#prev, #next{
+    font-weight: normal;
+    border: none;
+    background: none;
+    border:2px solid black;
+    width: 100px;
+    font-size: 15px;
+    outline:none;
+    margin-top:5px;
+    margin-bottom: 20px;
+    height: 25px;
+}
+
+#prev:hover, #next:hover {
+    border: 2px solid pink;
+    color: pink;
+    }
+
 #the-canvas {
     border: 1px solid black;
     direction: ltr;
   }
 
+#page_span{
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.rating__result{
+    display: none;
+}
+
+i{
+    font-size: 25px;
+}
+
+.fas{
+    color:#cb45f7;
+}
+
+textarea{
+    width: 280px;
+    height: 100px;
+    max-width: 280px;
+    max-height: 100px;
+    resize: none;
+    outline: none;
+    padding-left: 2px;
+}
+
+#rate_div{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=submit]{
+    font-weight: bold;
+    border: none;
+    background: none;
+    border-bottom:2px solid black;
+    width: 130px;
+    height: 45px;
+    font-size: large;
+    outline:none;
+    margin-left: auto;
+}
+
+input[type=submit]:hover {
+    border-bottom: 2px solid pink;
+    color: pink;
+}
+
+#delete{
+    outline: none;
+    background: none;
+    border: none;
+}
+
+#delete:hover{
+    opacity: 0.5;
+}
+
+.current_rate_star{
+    font-size: 18px;
+}
+
+#id_rate{
+ display: none;
+}
+
+label{
+    display: none;
+}
+
   @media screen and (max-width: 500px) {
-      #note_div{
+      #main_div{
           display: flex;
           justify-content: center;
           text-align: center;
           justify-items: center;
           flex-direction: column;
+      }
+      #rate_div{
+          margin-top: 0;
       }
   }
