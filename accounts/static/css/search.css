@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Open-sans', sans-serif;
+}
+
+.container {
+  margin-top: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 350;
+}
+
+.searchInputWrapper {
+  position: relative;
+}
+
+.searchInput {
+  width: 20rem;
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 2rem;
+  border: none;
+  transition: transform 0.1s ease-in-out;
+  border: #cb45f7 1.5px solid;
+
+}
+
+::placeholder {
+  color: #a1a1a1;
+}
+
+/* hide the placeholder text on focus */
+:focus::placeholder {
+  text-indent: -999px
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputIcon {
+  position: absolute;
+  right: 0.8rem;
+  top: 0.5rem;
+  color: #cb45f7;
+  transition: all 0.1s ease-in-out;
+}
+
+.container:focus-within >
+.searchInputWrapper > .searchInputIcon {
+  right: 0.2rem;
+}
+
+form{
+  margin-bottom: 2.5rem;
+}
+
+.user_div{
+  align-items: baseline;
+  margin-bottom: 3rem;
+  border-bottom: black solid 2px;
+  padding-bottom: 20px;
+  width: 40%;
+  display: flex;
+
+}
+
+.profile_pic{
+  border-radius: 50% 50%;
+}
+
+.user_span{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.user_span a{
+  text-decoration: none;
+  color: black;
+}
+
+.user_span a:hover{
+  opacity: 0.5;
+}
+
+.friend_add{
+  margin-left: auto;
+  text-decoration: none;
+  color: #cb45f7;
+  font-size: 1.25rem;
+}
+
+.friend_add:hover{
+  opacity: 0.5;
+}
+
+.followed{
+  margin-left: auto;
+  text-decoration: none;
+  color: #cb45f7;
+  font-size: 1.25rem;
+  cursor: context-menu;
+}
+
+#waves{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+

@@ -37,10 +37,6 @@ class Note(models.Model):
         unique_slugify(self, self.title)
         super(Note, self).save(*args, **kwargs)
 
-    def update_rating(self):
-        # TODO: add update of average rating
-        ...
-
     def __str__(self):
         return self.title
 

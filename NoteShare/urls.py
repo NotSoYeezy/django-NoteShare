@@ -22,15 +22,20 @@ from . import views
 from profiles import views as profile_views
 
 urlpatterns = [
+    # MAIN VIEWS
     path('admin/', admin.site.urls),
-    path('social-auth/', include('social_django.urls', namespace='social')),
     path('', views.Index.as_view(), name='index'),
     path('Informations/', views.InfoView.as_view(), name='information'),
-    path('accounts/', include('accounts.urls')),
     path('user/<str:pk>/', profile_views.user_profile, name='profile'),
     path('user/<str:pk>/update/', profile_views.UpdateUserView.as_view(), name='profile_update'),
 
-    path('Notes/', include('notes.urls'))
+    # OTHER APPS' VIEWS
+    path('social-auth/', include('social_django.urls', namespace='social')),
+    path('accounts/', include('accounts.urls')),
+    path('Notes/', include('notes.urls')),
+    path('search/', include('search.urls')),
+    path('friends/', include('friends.urls')),
+
 ]
 
 if settings.DEBUG:

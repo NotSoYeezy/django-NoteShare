@@ -22,51 +22,38 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
         return success_url
 
 
-class NoteDetailView(DetailView):
-    model = Note
-    template_name = 'notes/note_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(NoteDetailView, self).get_context_data(**kwargs)
-        context['form'] = RateForm
-        return context
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        form.instance.note = Note.objects.get(slug=self.kwargs['slug'])
-        form.save()
-
-
 def note_detail_view(request, slug):
     note = get_object_or_404(Note, slug=slug)
     form = RateForm
 
     if request.method == 'POST':
-        form = RateForm(request.POST)
-        if form.is_valid():
-            if not Rate.objects.all().filter(author=request.user, note=note):
-                form.instance.author = request.user
-                form.instance.note = note
-                form.save()
-                return render(request, 'notes/note_detail.html', {'note': note,
-                                                                  'form': form,
-                                                                  'user_rate': form.cleaned_data['rate']})
-            else:
-                user_rate = Rate.objects.get(author=request.user, note=note)
-                new_rate = form.cleaned_data['rate']
-                user_rate.rate = new_rate
-                user_rate.save()
-                return render(request, 'notes/note_detail.html', {'note': note,
-                                                                  'form': form,
-                                                                  'message': "You've changed your rate!",
-                                                                  'user_rate': user_rate.rate})
+        if request.user.is_authenticated:
+            form = RateForm(request.POST)
+            if form.is_valid():
+                if not Rate.objects.all().filter(author=request.user, note=note):
+                    form.instance.author = request.user
+                    form.instance.note = note
+                    form.save()
+                    return render(request, 'notes/note_detail.html', {'note': note,
+                                                                      'form': form,
+                                                                      'user_rate': form.cleaned_data['rate']})
+                else:
+                    user_rate = Rate.objects.get(author=request.user, note=note)
+                    new_rate = form.cleaned_data['rate']
+                    user_rate.rate = new_rate
+                    user_rate.save()
+                    return render(request, 'notes/note_detail.html', {'note': note,
+                                                                      'form': form,
+                                                                      'message': "You've changed your rate!",
+                                                                      'user_rate': user_rate.rate})
     else:
-        try:
-            if Rate.objects.get(author=request.user, note=note).rate:
-                user_rate = Rate.objects.get(author=request.user, note=note).rate
-                return render(request, 'notes/note_detail.html', {'note': note, 'form': form, 'user_rate': user_rate})
-        except Rate.DoesNotExist:
-            pass
+        if request.user.is_authenticated:
+            try:
+                if Rate.objects.get(author=request.user, note=note).rate:
+                    user_rate = Rate.objects.get(author=request.user, note=note).rate
+                    return render(request, 'notes/note_detail.html', {'note': note, 'form': form, 'user_rate': user_rate})
+            except Rate.DoesNotExist:
+                pass
     return render(request, 'notes/note_detail.html', {'note': note, 'form': form, 'user_rate': 0})
 
 

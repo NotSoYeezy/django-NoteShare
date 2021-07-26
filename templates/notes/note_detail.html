@@ -5,72 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
     <link rel="stylesheet" href="{% static 'css/note_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 {% block body_block %}
-    <div id="note_div">
-        <div id="note_header">
-                <h1 id="note_title">{{note.title}}</h1>
+        <nav>
+
+        <div id="navig-div">
+            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/cover.svg"%}" width="370" id='logo'></a>
+            <div id="navig-links">
+                <a href="#">Find notes</a>
+                <a href="{% url 'profile' pk=note.author.pk %}">Go back</a>
+            </div>
         </div>
-        <div id="note_info">
-            <p>Author: {{ note.author }}</p>
-            <p>Category: {{ note.category }}</p>
-            <p>Rating: <span id="note_rate">
-            {% with ''|center:note.rating as range %}
-            {% if note.rating != 0 %}
-            {% for rate in range %}
-            <i class="fas fa-star current_rate_star"></i>
-            {% endfor %}
-            {% else %}
-            No rating
+    </nav>
+    <div id="main_container">
+        <div id="note_div">
+            <div id="note_header">
+                    <h1 id="note_title">{{note.title}}</h1>
+            </div>
+            <div id="note_info">
+                <p>Author: {{ note.author }}</p>
+                <p>Category: {{ note.category }}</p>
+                <p>Rating: <span id="note_rate">
+                {% with ''|center:note.rating as range %}
+                {% if note.rating != 0 %}
+                {% for rate in range %}
+                <i class="fas fa-star current_rate_star"></i>
+                {% endfor %}
+                {% else %}
+                No rating
+                {% endif %}
+                {% endwith %}
+                </span>
+                </p>
+            </div>
+            <div id="note_content">
+                    <h2>PDF Preview</h2>
+                    <button id="prev">Previous</button>
+                    <button id="next">Next</button>
+                    &nbsp; &nbsp; <br>
+                    <canvas id="the-canvas"></canvas> <br>
+                    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+               {% if user.username == note.author.username%}
+                <form method="POST" action='{% url 'notes:delete_note' slug=note.slug %}'>
+                    {% csrf_token %}
+                    <button type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
+                </form>
             {% endif %}
+            </div>
+              </div>
+        {%if user.is_authenticated%}
+          <div id="rate_div">        <h2>Rate me:</h2>
+            <div class="rating">
+              <span class="rating__result"></span>
+           {% with ''|center:user_rate as colored_stars %}
+               {% for star in colored_stars %}
+               <i class="rating__star fas fa-star"></i>
+               {% endfor %}
+           {% endwith %}
+            {% with user_rate|calculate_stars as uncolored_stars %}
+            {% with ''|center:uncolored_stars as uncolored_stars %}
+                {% for star in uncolored_stars %}
+                <i class="rating__star far fa-star"></i>
+                {% endfor %}
             {% endwith %}
-            </span>
-            </p>
-        </div>
-        <div id="note_content">
-                <h2>PDF Preview</h2>
-                <button id="prev">Previous</button>
-                <button id="next">Next</button>
-                &nbsp; &nbsp; <br>
-                <canvas id="the-canvas"></canvas> <br>
-                <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
-           {% if user.username == note.author.username%}
-            <form method="POST" action='{% url 'notes:delete_note' slug=note.slug %}'>
-                {% csrf_token %}
-                <button type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
-            </form>
-        {% endif %}
-        </div>
+            {% endwith %}
+            {% endif %}
           </div>
-      <div id="rate_div">        <h2>Rate me:</h2>
-        <div class="rating">
-          <span class="rating__result"></span>
-       {% with ''|center:user_rate as colored_stars %}
-           {% for star in colored_stars %}
-           <i class="rating__star fas fa-star"></i>
-           {% endfor %}
-       {% endwith %}
-        {% with user_rate|calculate_stars as uncolored_stars %}
-        {% with ''|center:uncolored_stars as uncolored_stars %}
-            {% for star in uncolored_stars %}
-            <i class="rating__star far fa-star"></i>
-            {% endfor %}
-        {% endwith %}
-        {% endwith %}
-      </div>
-          {% if user.is_authenticated %}
-          <p>{{ message }}</p>
-          <form method="POST">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <input type="submit" value="Submit" id="submitRate">
-          </form>
-          {% endif %}
-        <h3>Do you want to show your opinion?</h3>
-        <textarea placeholder="Your opinion:"></textarea>
-        <br>
-        <input type="submit" value="Submit">
-      </div>
+              {% if user.is_authenticated %}
+              <p>{{ message }}</p>
+              <form method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <input type="submit" value="Submit" id="submitRate">
+              </form>
+              {% endif %}
+            <h3>Do you want to show your opinion?</h3>
+            <textarea placeholder="Your opinion:"></textarea>
+            <br>
+            <input type="submit" value="Submit">
+          </div>
+    </div>
     {% if note.content_file %}
     <script>
 //Script coppied from https://mozilla.github.io/pdf.js/examples/
