@@ -23,7 +23,11 @@
     {% for user_result in results %}
     <div class="user_div">
       <span class='user_span'><a href="{% url 'profile' pk=user_result.pk %}"><img class="profile_pic" src="{{ user_result.profile_pic.url }}" width="100px">{{ user_result.display_name }}</a></span>
-      {% if user.username != user_result.username %}{% if user_result.username not in user.friends %}<a class="friend_add" href="{% url 'friends:add_friend' pk=user_result.pk query=query%}"><i class="fa fa-user-plus"></i> Add friend</a>{% else %}<a class="followed">You've already followed {{ user_result.display_name }}</a>{% endif %}{% endif %}
+    {% if user.friends %}
+      {% if user.username != user_result.username %}{% if user_result.username not in user.friends %}<a class="friend_add" href="{% url 'friends:add_friend' pk=user_result.pk%}"><i class="fa fa-user-plus"></i> Add friend</a>{% endif %}{% endif %}
+    {% else %}
+      <a class="friend_add" href="{% url 'friends:add_friend' pk=user_result.pk%}"><i class="fa fa-user-plus"></i> Add friend</a>
+    {% endif %}
     </div>
     {% empty %}
     <h2>Anyone was found!</h2>

@@ -28,6 +28,7 @@ urlpatterns = [
     path('Informations/', views.InfoView.as_view(), name='information'),
     path('user/<str:pk>/', profile_views.user_profile, name='profile'),
     path('user/<str:pk>/update/', profile_views.UpdateUserView.as_view(), name='profile_update'),
+    path('user/<str:pk>/following/', profile_views.user_following_list, name='following_list'),
 
     # OTHER APPS' VIEWS
     path('social-auth/', include('social_django.urls', namespace='social')),

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_block %}
+{% endblock %}
+{% block body_block %}
+    {% for u in users_following%}
+        <h1><a href="{% url 'profile' pk=u.pk %}">{{ u.display_name }}</a></h1>
+    {% endfor %}
+{% endblock %}
