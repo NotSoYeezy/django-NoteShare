@@ -23,7 +23,11 @@
         {% else %}
         <h1>{{ user_profile.display_name }}</h1>
         {% endif %}
-        <a href="{% url 'following_list' pk=user_profile.pk %}">Following: {{ total_friends }}</a>
+        <span>
+            <a href="{% url 'following_list' pk=user_profile.pk %}">Following: {{ total_friends }}</a>
+            &nbsp;
+            <a href="{% url 'followers_list' pk=user_profile.pk %}">Followers: {{total_followers}}</a>
+        </span>
             {% if user_profile.bio %}
             <h2>About me:</h2>
             <div id="bio-div">

@@ -21,10 +21,10 @@
     <div id="main_container">
         <div id="note_div">
             <div id="note_header">
-                    <h1 id="note_title">{{note.title}}</h1>
+                    <h1 id="note_title">{{note.title}} <a href="{{ note.content_file.url }}" download id="note_download"><i class="fas fa-download"></i></a></h1>
             </div>
             <div id="note_info">
-                <p>Author: {{ note.author }}</p>
+                <p>Author: <a id="author_link" href="{% url 'profile' pk=note.author.pk %}">{{ note.author }}</a></p>
                 <p>Category: {{ note.category }}</p>
                 <p>Rating: <span id="note_rate">
                 {% with ''|center:note.rating as range %}
@@ -55,7 +55,8 @@
             </div>
               </div>
         {%if user.is_authenticated%}
-          <div id="rate_div">        <h2>Rate me:</h2>
+          <div id="rate_div">
+            <h2>Rate me:</h2>
             <div class="rating">
               <span class="rating__result"></span>
            {% with ''|center:user_rate as colored_stars %}

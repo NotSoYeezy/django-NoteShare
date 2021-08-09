@@ -24,11 +24,12 @@ from profiles import views as profile_views
 urlpatterns = [
     # MAIN VIEWS
     path('admin/', admin.site.urls),
-    path('', views.Index.as_view(), name='index'),
+    path('', views.index_view, name='index'),
     path('Informations/', views.InfoView.as_view(), name='information'),
     path('user/<str:pk>/', profile_views.user_profile, name='profile'),
     path('user/<str:pk>/update/', profile_views.UpdateUserView.as_view(), name='profile_update'),
     path('user/<str:pk>/following/', profile_views.user_following_list, name='following_list'),
+    path('user/<str:pk>/followers/', profile_views.followers_list, name='followers_list'),
 
     # OTHER APPS' VIEWS
     path('social-auth/', include('social_django.urls', namespace='social')),

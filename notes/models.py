@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django_unique_slugify import unique_slugify
+import datetime
 
 # Own imports
 from .validators import check_file_extension
@@ -26,15 +27,17 @@ class Category(models.Model):
 class Note(models.Model):
     author = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=35)
     thumbnail = models.ImageField(upload_to='thumbnails')
     content_file = models.FileField(upload_to='notes', blank=True, null=True, validators=[check_file_extension])
     content_text = models.TextField(max_length=1000, blank=True, null=True)
     slug = models.SlugField(null=True, blank=True, unique=True)
     rating = models.IntegerField(default=0)
+    created_date = models.DateField(null=True)
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.title)
+        self.created_date = datetime.datetime.now()
         super(Note, self).save(*args, **kwargs)
 
     def __str__(self):

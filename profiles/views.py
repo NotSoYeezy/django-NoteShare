@@ -12,6 +12,7 @@ def user_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     notes = Note.objects.filter(author=user)
     total_friends = 0
+    total_followers = len(User.objects.filter(friends__contains=[user]))
 
     if user.friends:
         total_friends = len(user.friends)
@@ -20,6 +21,7 @@ def user_profile(request, pk):
         'user_profile': user,
         'notes': notes,
         'total_friends': total_friends,
+        'total_followers': total_followers,
 
     }
 
@@ -37,6 +39,15 @@ def user_following_list(request, pk):
             user = User.objects.get(username=user_following)
             results.append(user)
     return render(request, 'profiles/following_list.html', {'users_following': results})
+
+
+def followers_list(request, pk):
+    main_user = get_object_or_404(User, pk=pk)
+    followers_query = User.objects.filter(friends__contains=[main_user])
+
+    print(followers_query)
+
+    return render(request, 'profiles/followers_list.html', {'followers': followers_query})
 
 
 class UpdateUserView(UpdateView, LoginRequiredMixin):

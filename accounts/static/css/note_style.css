@@ -91,6 +91,10 @@ input[type=submit]:hover {
     color: pink;
 }
 
+#note_download:hover{
+    opacity: 0.5;
+}
+
 #delete{
     outline: none;
     background: none;
@@ -170,6 +174,15 @@ label{
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+}
+
+#author_link{
+    text-decoration: none;
+    color: black;
+}
+
+#author_link:hover{
+    opacity: 0.5;
 }
 
 /* Add Animation */
