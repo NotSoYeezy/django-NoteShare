@@ -191,8 +191,6 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
   renderPage(pageNum);
 });
 </script>
-    {% else %}
-    <!---TODO: Add displaying note text content--->
     {% endif %}
     <script src="{% static 'js/rating_script.js' %}"></script>
 {% endblock %}
