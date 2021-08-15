@@ -9,6 +9,7 @@ from . import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
 from .forms import UserChangePassword
+from django.contrib.auth.decorators import login_required
 
 app_name = 'accounts'
 
@@ -58,7 +59,7 @@ def user_register(request):
     return render(request, 'accounts/register.html', {'user_form': user_form, 'registered': registered})
 
 
-# login required
+@login_required()
 def change_password(request):
     if request.method == 'POST':
         form = UserChangePassword(request.user, request.POST)
@@ -72,3 +73,8 @@ def change_password(request):
         form = UserChangePassword(request.user)
 
     return render(request, 'accounts/change_password.html', {'form': form})
+
+
+@login_required()
+def delete_account(request, pk):
+    ...

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
 from accounts.models import User
 from django.contrib.auth.decorators import login_required
@@ -25,3 +25,13 @@ def add_friend(request, pk):
     return HttpResponseRedirect(reverse_lazy('search:user_search'))
 
 
+@login_required()
+def remove_friend(request, pk):
+    friend = get_object_or_404(User, pk=pk)
+    friend_remover = get_object_or_404(User, pk=request.user.pk)
+
+    if friend.username in friend_remover.friends:
+        friend_remover.friends.remove(friend.username)
+        friend_remover.save()
+
+    return redirect('profile', pk=friend_remover.pk)
