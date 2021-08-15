@@ -1,6 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 {% block body_block %}
+        <nav>
+        <div id="navig-div">
+            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/cover.svg"%}" width="370" id='logo'></a>
+            <div id="navig-links">
+                {% if user.is_authenticated %}<a href="{% url 'profile' pk=user.pk %}">My profile</a>{% endif %}
+                <a href="{% url 'information' %}">Informations</a>
+            </div>
+        </div>
+    </nav>
+    {% if query %}
+    <div class="container">
+        <h1 class="heading">Find New Notes!</h1>
+        <h2>Notes with a title of "{{ query }}"</h2>
+        <h2><a href="{% url 'search:note_search' %}">Search again</a></h2>
+    {% for note in results %}
+        <div class="note_div">
+        <a href="{% url 'notes:detail_note' slug=note.slug %}" class="note_link">
+                <h2>Title: {{ note.title }}</h2>
+                <h3>Rating: {{ note.rating }}</h3>
+                <img src="{{ note.thumbnail.url }}" alt='"{{ note.title }}" thumbnail' class="thumbnail">
+        </a>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="container">
+        <h1 class="heading">Find New Notes!</h1>
+        <div class="searchInputWrapper">
+          <form method="GET">
+            {{ form }}
+            <i class="searchInputIcon fa fa-search"></i>
+            <input type="submit" id="search_submit" value="Search" style="visibility: hidden">
+        </form>
+        </div>
+  </div>
+  <footer>
+    <svg id="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#cb45f7" fill-opacity="1" d="M0,128L34.3,106.7C68.6,85,137,43,206,64C274.3,85,343,171,411,197.3C480,224,549,192,617,170.7C685.7,149,754,139,823,144C891.4,149,960,171,1029,160C1097.1,149,1166,107,1234,96C1302.9,85,1371,107,1406,117.3L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+    </svg>
+  </footer>
+  {% endif %}
 {% endblock %}

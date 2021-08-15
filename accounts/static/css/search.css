@@ -73,7 +73,16 @@ form{
   padding-bottom: 20px;
   width: 40%;
   display: flex;
+}
 
+.note_div{
+  align-items: baseline;
+  margin-bottom: 3rem;
+  border-bottom: black solid 2px;
+  padding-bottom: 20px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile_pic{
@@ -119,3 +128,18 @@ form{
   left: 0;
 }
 
+.thumbnail{
+    width: 300px;
+    height: 300px;
+    border-radius: 2%;
+  border:1px solid black;
+}
+
+.note_link{
+  text-decoration: none;
+  color: black;
+}
+
+.note_link:hover{
+  opacity: 0.5;
+}

@@ -91,3 +91,30 @@ p{
 #navig-links a:hover{
     opacity: 0.5;
 }
+
+#following_span a{
+    text-decoration: none;
+    color: black;
+}
+
+#following_span a:hover{
+    opacity: 0.5;
+}
+
+#show_pages{
+    text-align: center;
+}
+
+.endless_page_current{
+    font-size: 20px;
+}
+
+.endless_page_link{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.endless_page_link:hover{
+    opacity: 0.5;
+}

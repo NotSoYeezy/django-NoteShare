@@ -8,7 +8,7 @@ TODO: Dodaj ikone search do "search bara"!
     <link rel="stylesheet" href="{% static 'css/feed.css' %}">
 {% endblock %}
 {% block body_block %}
-    <nav>
+    <nav style="position: -webkit-sticky; position: sticky; top: 10px;">
         <div id="nav-cont">
             <img src="{%static "images/cover.svg"%}" width="370" id='logo'>
             <div id='nav-links'>
@@ -25,25 +25,43 @@ TODO: Dodaj ikone search do "search bara"!
     </nav>
     <main>
     {% if user.is_authenticated %}
-        <div class="feed_div">
+        <div class="feed_div infinite-container">
     {% for friend in friends %}
-            <div class="feed_section">
+            <div class="feed_section infinite-item">
             {% if friend|check_user %}
                 <h1 class="feed_header"><a href="{% url 'profile' pk=friend.pk %}" class="note_profile_link">{{ friend.display_name }}</a> notes </h1>
                 {% for note in friend|check_user  %}
-                <a href="{% url 'notes:detail_note' slug=note.slug %}" class="note_link">
                     <div class="feed_note">
-                        <h2 class="note_title">{{ note.title }}</h2>
-                        <h3 class="note_rating">Rating: {{ note.rating }}</h3>
-                        <br>
-                        <img class="note_thumbnail" src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }} can't be rendered'">
+                        <a href="{% url 'notes:detail_note' slug=note.slug %}" class="note_link">
+                            <h2 class="note_title">{{ note.title }}</h2>
+                            <h3 class="note_rating">Rating: {{ note.rating }}</h3>
+                            <br>
+                            <img class="note_thumbnail" src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }} can't be rendered'">
+                        </a>
                     </div>
-               </a>
                 {% endfor %}
             {% endif %}
             </div>
+    {% empty %}
+            <h1>Follow someone to get the latest notes!</h1>
+            <h2><a href="{% url 'search:user_search' %}">Find people</a></h2>
     {% endfor %}
+    {% if friends.has_next %}
+        <a class="infinite-more-link" href="?page={{ friends.next_page_number }}">More</a>
+    {% endif %}
         </div>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/infinite.js' %}"></script>
+        <script>
+        let infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+            handler: function(direction) {
+        },
+        offset: 'bottom-in-view'
+        });
+
+        </script>
     {% endif %}
     </main>
 
