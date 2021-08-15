@@ -35,6 +35,11 @@ TODO: Dodaj ikone search do "search bara"!
                         <a href="{% url 'notes:detail_note' slug=note.slug %}" class="note_link">
                             <h2 class="note_title">{{ note.title }}</h2>
                             <h3 class="note_rating">Rating: {{ note.rating }}</h3>
+                            {% if note.description %}
+                            <p>Description: {{ note.description|truncatechars:45 }}</p>
+                            {% else %}
+                            <h3>Description is not provided</h3>
+                            {% endif %}
                             <br>
                             <img class="note_thumbnail" src="{{ note.thumbnail.url }}" alt="Note '{{ note.title }} can't be rendered'">
                         </a>
