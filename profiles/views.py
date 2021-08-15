@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserUpdateForm
 from notes.models import Note
 from django.contrib.postgres.search import SearchVector
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -16,6 +17,15 @@ def user_profile(request, pk):
 
     if user.friends:
         total_friends = len(user.friends)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(notes, 20)
+    try:
+        notes = paginator.page(page)
+    except PageNotAnInteger:
+        notes = paginator.page(page)
+    except EmptyPage:
+        notes = paginator.page(paginator.num_pages)
 
     context = {
         'user_profile': user,
