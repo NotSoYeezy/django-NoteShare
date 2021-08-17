@@ -89,7 +89,7 @@ input[type=submit]{
 input[type=submit]:hover {
     border-bottom: 2px solid pink;
     color: pink;
-    }
+}
 
 ul {
     list-style: none;

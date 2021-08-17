@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from . import models
-from django.shortcuts import render, reverse
-from django.views.generic import TemplateView, View
+from django.shortcuts import render, reverse, get_object_or_404, redirect
+from django.views.generic import TemplateView, View, DeleteView
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
 from .forms import UserChangePassword
 from django.contrib.auth.decorators import login_required
+from .models import User
 
 app_name = 'accounts'
 
@@ -76,5 +77,24 @@ def change_password(request):
 
 
 @login_required()
-def delete_account(request, pk):
-    ...
+def delete_account(request):
+    user = get_object_or_404(User, pk=request.user.pk)
+    followers = User.objects.filter(friends__contains=[user.username])
+    error = ''
+
+    if request.method == 'POST':
+        choice = request.POST['rdo']
+        if str(choice) == 'Yes':
+            if followers:
+                # Removing followers, prevents index page from query error
+                for follower in followers:
+                    follower.friends.remove(user.username)
+                    follower.save()
+            user.delete()
+            return redirect('index')
+        elif str(choice) == 'No':
+            return redirect('profile', pk=request.user.pk)
+        else:
+            error = 'There was an error, please try again.'
+
+    return render(request, 'accounts/confirm_delete.html', {'error': error})
