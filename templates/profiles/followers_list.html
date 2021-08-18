@@ -3,7 +3,7 @@
 {% block head_block %}
 {% endblock %}
 {% block body_block %}
-    {% for u in followers%}
-        <h1><a href="{% url 'profile' pk=u.pk %}">{{ u.display_name }}</a></h1>
+    {% for follower in followers%}
+        <h1><a href="{% url 'profile' pk=follower.pk %}">{{ follower.display_name }}</a> <a class="friend_add" href="{% url 'friends:add_friend' pk=follower.pk%}"><i class="fa fa-user-plus"></i></a></h1>
     {% endfor %}
 {% endblock %}

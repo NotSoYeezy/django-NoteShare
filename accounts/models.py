@@ -1,12 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils.text import slugify
 from django.shortcuts import reverse
 from django.contrib.postgres.fields import ArrayField
 
 
 # TODO: Dodaj usuwanie profilowego z dysku
-# Create your models here.
 class User(AbstractUser):
     username = models.CharField(unique=True, max_length=100, primary_key=True)
     display_name = models.CharField(unique=True, max_length=100, blank=True, null=True)

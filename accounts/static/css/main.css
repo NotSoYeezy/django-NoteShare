@@ -4,6 +4,9 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+nav{
+    font-weight: 300;
+}
 
 #nav-cont{
     display: flex;

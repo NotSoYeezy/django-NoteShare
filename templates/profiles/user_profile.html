@@ -9,9 +9,9 @@
         <div id="navig-div">
             <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/cover.svg"%}" width="370" id='logo'></a>
             <div id="navig-links">
-                <a href="{% url 'search:note_search' %}">Find notes</a>
-                {% if user.is_authenticated %}<a href="{% url 'search:user_search' %}">Find friends</a>{% endif %}
-                <a href="{% url 'information' %}">Informations</a>
+                <a href="{% url 'search:note_search' %}">Find notes <i class="fas fa-sticky-note"></i></a>
+                {% if user.is_authenticated %}<a href="{% url 'search:user_search' %}">Find friends <i class="fas fa-user-friends"></i></a>{% endif %}
+                <a href="{% url 'profile' pk=user.pk %}">My Profile <i class="fas fa-user"></i></a>
             </div>
         </div>
     </nav>
