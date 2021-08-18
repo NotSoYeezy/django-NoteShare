@@ -22,7 +22,7 @@ def add_friend(request, pk):
         friend_adder.friends = [friend.username]
         friend_adder.save()
 
-    return HttpResponseRedirect(reverse_lazy('search:user_search'))
+    return redirect('profile', pk=friend.pk)
 
 
 @login_required()

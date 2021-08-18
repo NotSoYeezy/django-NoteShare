@@ -1,12 +1,10 @@
 from django.urls import reverse_lazy
-from . import models
 from django.shortcuts import render, reverse, get_object_or_404, redirect
-from django.views.generic import TemplateView, View, DeleteView
+from django.views.generic import View
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth import update_session_auth_hash
 from .forms import UserChangePassword
 from django.contrib.auth.decorators import login_required
