@@ -9,10 +9,10 @@
         <div id="nav-cont">
             <img src="{%static "images/cover.svg"%}" width="370" id='logo'>
             <div id='nav-links'>
-                <a href="{% url 'search:note_search' %}">Find notes</a>
+                <a href="{% url 'search:note_search' %}">Find notes <i class="fas fa-sticky-note"></i></a>
                 {%if user.is_authenticated%}
                     <a href="{% url 'profile' pk=user.pk%}">Hello {{user.username}}</a>
-                    <a href="{% url 'accounts:logout' %}" id="logInA"><i style="margin-right: 10px" class="fas fa-sign-out-alt"></i>Logout</a>
+                    <a href="{% url 'accounts:logout' %}" id="logInA">Logout <i style="margin-right: 10px" class="fas fa-sign-out-alt"></i></a>
                 {%else%}
                     <a href="{%url 'accounts:login'%}" id='logInA'><i style="margin-right: 10px" class="fas fa-sign-in-alt"></i>Login</a>
                     <a href = "{% url 'accounts:register' %}" id='signUpA' ><i style="margin-right: 10px" class="fas fa-user-plus"></i>Signup</a>
