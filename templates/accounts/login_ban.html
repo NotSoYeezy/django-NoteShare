@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/login_ban.css' %}">
+{% endblock %}
 {% block body_block %}
-    <h1>You can't login right now</h1>
-    <h1>Too many attempts, wait 10 minutes, and try again </h1>
+    <div id="ban_div">
+        <h1>You can't login right now</h1>
+        <h1>Too many attempts, wait 10 minutes, and try again </h1>
+        <a href="{% url 'index' %}">Go back to main page</a>
+    </div>
 {% endblock %}
