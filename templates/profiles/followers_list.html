@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/follow.css' %}">
 {% endblock %}
 {% block body_block %}
+    {% if user.pk == followed_user.pk %}
     {% for follower in followers%}
-        <h1><a href="{% url 'profile' pk=follower.pk %}">{{ follower.display_name }}</a> <a class="friend_add" href="{% url 'friends:add_friend' pk=follower.pk%}"><i class="fa fa-user-plus"></i></a></h1>
+        <h1><a href="{% url 'profile' pk=follower.pk %}">{{ follower.display_name }}</a>{% if follower.username not in followed_user.friends %} <a class="friend_add" href="{% url 'friends:add_friend' pk=follower.pk%}"><i class="fa fa-user-plus"></i></a>{% endif %}</h1>
     {% endfor %}
+    {% else %}
+    {% for follower in followers %}
+        <h1><a href="{% url 'profile' pk=follower.pk %}">{{ follower.display_name }}</a> {% if follower.username not in user.friends%}{% if follower.username != user.username %}<a class="friend_add" href="{% url 'friends:add_friend' pk=follower.pk%}"><i class="fa fa-user-plus"></i></a>{% endif %}{% endif %}</h1>
+    {% endfor %}
+    {% endif %}
 {% endblock %}

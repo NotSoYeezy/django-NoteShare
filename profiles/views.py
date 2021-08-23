@@ -57,7 +57,7 @@ def followers_list(request, pk):
 
     print(followers_query)
 
-    return render(request, 'profiles/followers_list.html', {'followers': followers_query})
+    return render(request, 'profiles/followers_list.html', {'followers': followers_query, 'followed_user': main_user})
 
 
 class UpdateUserView(UpdateView, LoginRequiredMixin):

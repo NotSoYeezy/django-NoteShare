@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/follow.css' %}">
 {% endblock %}
 {% block body_block %}
     {% for user_following in users_following%}
