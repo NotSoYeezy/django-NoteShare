@@ -125,10 +125,10 @@ WSGI_APPLICATION = 'NoteShare.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'noteshare',
-        'USER': 'note_share_admin',
-        'PASSWORD': 'marcinek2012',
-        'HOST': 'localhost',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_PASS'),
         'POST': '',
     }
 }
