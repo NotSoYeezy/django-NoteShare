@@ -2,6 +2,12 @@ language: python
 python:
   - '3.9'
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database noteshare;' -U postgres
+
 install:
   - pip install -r requirements.txt
 
