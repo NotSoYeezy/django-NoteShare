@@ -1,6 +1,7 @@
-exclude:
-  - migrations
-  - NoteShare/settings.py
-  - static/
-  - NoteShare/wsgi.py
-  - NoteShare/asgi.py
+languages:
+  - name: python
+    production:
+      exclude:
+        - .*/tests/
+        - .*/migrations/
+        - accounts/static/
