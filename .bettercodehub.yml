@@ -1,0 +1,6 @@
+exclude:
+  - migrations
+  - NoteShare/settings.py
+  - static/
+  - NoteShare/wsgi.py
+  - NoteShare/asgi.py
