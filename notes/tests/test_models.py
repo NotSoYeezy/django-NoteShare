@@ -60,6 +60,7 @@ class NoteModelTest(TestCase):
         user.set_password('test123')
         rating_1 = 4
         rating_2 = 2
+        rating_average = (rating_1 + rating_2)/2
         category = Category.objects.create(name='test_category')
         note = Note.objects.create(author=user,
                                    category=category,
@@ -67,9 +68,12 @@ class NoteModelTest(TestCase):
                                    thumbnail='thumbnails/kaktus.jpg',
                                    content_file='notes/Niemiecki.pdf'
                                    )
+        # Testing adding first rate
         rate_one = Rate.objects.create(note=note, author=user, rate=rating_1)
         note = Note.objects.get(author=user)
         self.assertEqual(note.rating, rate_one.rate)
+
+        # Testing adding second rate, checking if rating is averaged
         rate_two = Rate.objects.create(note=note, author=user, rate=rating_2)
         note = Note.objects.get(author=user)
-        self.assertEqual(note.rating, (rating_1+rating_2)/2)  # Checking if rating is averaged
+        self.assertEqual(note.rating, rating_average)  # Checking if rating is averaged
