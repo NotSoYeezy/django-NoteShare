@@ -34,7 +34,7 @@ class LoginView(View):
 
 
 class LogoutView(View, LoginRequiredMixin):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
 
     def get(self, request):
         logout(request)
