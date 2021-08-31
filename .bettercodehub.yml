@@ -1,9 +1,0 @@
-
-#languages:
-#  - name: python
-#    production:
-#      exclude:
-#        - .*/tests/
-#        - .*/migrations/
-#       - accounts/static/
-#   tests
