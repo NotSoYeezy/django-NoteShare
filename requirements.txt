@@ -1,4 +1,4 @@
-argon2-cffi==20.1.0
+argon2-cffi==21.1.0
 asgiref==3.3.4
 bcrypt==3.2.0
 certifi==2020.12.5
@@ -24,7 +24,7 @@ flake8==3.9.2
 idna==2.10
 mccabe==0.6.1
 oauthlib==3.1.0
-Pillow==8.2.0
+Pillow==8.3.2
 psycopg2==2.9.1
 pycodestyle==2.7.0
 pycparser==2.20
