@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class NoteCreateView(LoginRequiredMixin, CreateView):
-    login_url = '/login/'
+    login_url = '/accounts/login/'
     model = Note
     form_class = NoteCreateForm
     template_name = 'notes/create_note.html'
