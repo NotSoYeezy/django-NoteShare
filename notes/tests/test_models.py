@@ -22,15 +22,15 @@ class NoteModelTest(TestCase):
         note = Note.objects.create(author=user,
                                    category=category,
                                    title='Test title',
-                                   thumbnail='thumbnails/kaktus.jpg',
-                                   content_file='notes/Niemiecki.pdf'
+                                   thumbnail='thumbnails/test.jpg',
+                                   content_file='notes/test.pdf'
                                    )
 
         self.assertEqual(note.author, user)
         self.assertEqual(note.category, category)
         self.assertEqual(note.title, 'Test title')
-        self.assertEqual(note.thumbnail, 'thumbnails/kaktus.jpg')
-        self.assertEqual(note.content_file, 'notes/Niemiecki.pdf')
+        self.assertEqual(note.thumbnail, 'thumbnails/test.jpg')
+        self.assertEqual(note.content_file, 'notes/test.pdf')
         self.assertEqual(note.created_date.strftime('%Y-%m-%d'),
                          datetime.datetime.now().strftime('%Y-%m-%d'))
         self.assertEqual(note.slug, slugify(note.title))
@@ -60,7 +60,7 @@ class NoteModelTest(TestCase):
         user.set_password('test123')
         rating_1 = 4
         rating_2 = 2
-        rating_average = (rating_1 + rating_2)/2
+        rating_average = (rating_1 + rating_2) / 2
         category = Category.objects.create(name='test_category')
         note = Note.objects.create(author=user,
                                    category=category,
