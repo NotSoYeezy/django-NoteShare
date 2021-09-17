@@ -61,15 +61,22 @@ def note_detail_view(request, slug):
 def note_delete_view(request, slug):
     note = get_object_or_404(Note, slug=slug)
     author_pk = note.author.pk
+    error = ''
 
     if request.method == 'POST':
-        if note.author == request.user:
-            note.delete()
-            print(author_pk)
-            return redirect('profile', pk=author_pk)
+        choice = request.POST['rdo']
+        if str(choice) == 'Yes':
+            if note.author == request.user:
+                note.delete()
+                print(author_pk)
+                return redirect('profile', pk=author_pk)
+            else:
+                return redirect('profile', pk=author_pk)
+        elif str(choice) == 'No':
+            return redirect('notes:detail_note', slug=note.slug)
         else:
-            return redirect('profile', pk=author_pk)
+            error = 'There was an error, please try again'
     else:
-        return redirect('notes:detail_note', slug=slug)
+        return render(request, 'notes/confirm_delete.html', {'error': error, 'note':note})
 
 

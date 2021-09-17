@@ -46,10 +46,8 @@
                     <canvas id="the-canvas"></canvas> <br>
                     <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
                {% if user.username == note.author.username%}
-                <form method="POST" action='{% url 'notes:delete_note' slug=note.slug %}'>
                     {% csrf_token %}
-                    <button type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
-                </form>
+                    <button type="submit" id="delete"><a href="{% url 'notes:delete_note' slug=note.slug %}"><i class="fas fa-trash-alt"></i></a></button>
             {% endif %}
             </div>
               </div>

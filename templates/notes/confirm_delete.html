@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
+{% endblock %}
+{% block body_block %}
+    <!--
+    Code for radio buttons from: https://codepen.io/avstorm/pen/peCbd
+    -->
+    <div id="delete_div">
+        <h1 id="main_header">{{ user.username }} are you sure that you want delete note "{{ note.title }}"?</h1>
+        <h2 id="error_message">{{ error }}</h2>
+        <form method="POST">
+              {% csrf_token %}
+              <input type="radio" name="rdo" id="yes" value="Yes"/>
+              <input type="radio" name="rdo" id="no" value="No" checked/>
+              <div class="switch">
+                <label for="yes">Yes</label>
+                <label for="no">No</label>
+                <span></span>
+              </div>
+        </form>
+        <input type="submit" value="Submit">
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+    let form = document.querySelector('form')
+    let button = document.querySelector("input[type='submit']")
+    function form_submit(){
+        form.submit()
+    }
+    button.addEventListener('click', form_submit)
+    </script>
+{% endblock %}
