@@ -116,12 +116,12 @@ class TestDeleteAccountView(TestCase):
         self.user.set_password('TestPassword123')
         self.user.save()
         self.client.force_login(self.user)
+        self.url = reverse('accounts:delete_account')
 
     def test_delete_account_successful(self):
         """Test if user can delete account successfully"""
-        url = reverse('accounts:delete_account')
         post_data = {'rdo': 'Yes'}
-        response = self.client.post(url, post_data)
+        response = self.client.post(self.url, post_data)
 
         with self.assertRaises(User.DoesNotExist):
             user = get_user_model().objects.get(username='TestUser')
@@ -130,7 +130,13 @@ class TestDeleteAccountView(TestCase):
         """Test if user can deny account deletion"""
         url = reverse('accounts:delete_account')
         post_data = {'rdo': 'No'}
-        response = self.client.post(url, post_data)
+        response = self.client.post(self.url, post_data)
 
         self.assertTrue(get_user_model().objects.get(username='TestUser'))
 
+    def test_error_returns_successful(self):
+        """Testing if after passing wrong post data view returns correct error"""
+        post_data = {'rdo': 'wrong_data'}
+        response = self.client.post(self.url, post_data)
+
+        self.assertEqual(response.context['error'], 'There was an error, please try again')

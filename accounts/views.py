@@ -93,6 +93,6 @@ def delete_account(request):
         elif str(choice) == 'No':
             return redirect('profile', pk=request.user.pk)
         else:
-            error = 'There was an error, please try again.'
+            error = 'There was an error, please try again'
 
     return render(request, 'accounts/confirm_delete.html', {'error': error})
