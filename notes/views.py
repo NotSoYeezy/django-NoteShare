@@ -68,7 +68,6 @@ def note_delete_view(request, slug):
         if str(choice) == 'Yes':
             if note.author == request.user:
                 note.delete()
-                print(author_pk)
                 return redirect('profile', pk=author_pk)
             else:
                 return redirect('profile', pk=author_pk)
@@ -76,7 +75,8 @@ def note_delete_view(request, slug):
             return redirect('notes:detail_note', slug=note.slug)
         else:
             error = 'There was an error, please try again'
+            return render(request, 'notes/confirm_delete.html', {'error': error, 'note': note})
     else:
-        return render(request, 'notes/confirm_delete.html', {'error': error, 'note':note})
+        return render(request, 'notes/confirm_delete.html', {'error': error, 'note': note})
 
 
