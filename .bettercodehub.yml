@@ -2,5 +2,4 @@ exclude:
   - /NoteShare/settings.py
   - /NoteShare/urls.py
   - /NoteShare/wsgi.py
-  - /accounts/static/js
-  - ./migrations/.*
+  - /accounts/static/js/.*
