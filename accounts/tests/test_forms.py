@@ -5,15 +5,18 @@ from django.contrib.auth import get_user_model
 
 class FormTest(TestCase):
     """Testing only signup form, others are taken from django user management system"""
+    def setUp(self):
+        self.form_data = {
+            'username': 'Test user',
+            'display_name': 'Test display',
+            'email': 'test@test.pl',
+            'password': 'TestPassword123',
+            'confirm_password': 'TestPassword123',
+                    }
+
     def test_signup_form_valid(self):
         """Testing if UserSignupForm is valid"""
-        form_data = {'username': 'Test user',
-                     'display_name': 'Test display',
-                     'email': 'test@test.pl',
-                     'password': 'TestPassword123',
-                     'confirm_password': 'TestPassword123',
-                     }
-        form = UserSignupForm(data=form_data)
+        form = UserSignupForm(data=self.form_data)
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data['username'], 'Test user')
         self.assertEqual(form.cleaned_data['display_name'], 'Test display')
@@ -23,13 +26,7 @@ class FormTest(TestCase):
 
     def test_signup_form_save(self):
         """Testing if you can save UserSignupForm and create user with that"""
-        form_data = {'username': 'Test user',
-                     'display_name': 'Test display',
-                     'email': 'test@test.pl',
-                     'password': 'TestPassword123',
-                     'confirm_password': 'TestPassword123',
-                     }
-        form = UserSignupForm(data=form_data)
+        form = UserSignupForm(data=self.form_data)
         form.save()
         user = get_user_model().objects.get(username='Test user')
         user.set_password(form.cleaned_data['password'])
