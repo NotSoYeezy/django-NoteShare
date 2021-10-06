@@ -1,2 +1,4 @@
 exclude:
-  - /NoteShare/.*
+  - /NoteShare/settings.py
+  - /NoteShare/urls.py
+  - /NoteShare/wsgi.py
