@@ -7,10 +7,10 @@ from django.http import HttpResponseRedirect
 
 
 @login_required()
-# Create your views here.
 def add_friend(request, pk):
     friend = get_object_or_404(User, pk=pk)
     friend_adder = get_object_or_404(User, pk=request.user.pk)
+    print(friend_adder)
 
     if friend_adder.friends:
         if friend.username not in friend_adder.friends:
@@ -30,8 +30,9 @@ def remove_friend(request, pk):
     friend = get_object_or_404(User, pk=pk)
     friend_remover = get_object_or_404(User, pk=request.user.pk)
 
-    if friend.username in friend_remover.friends:
-        friend_remover.friends.remove(friend.username)
-        friend_remover.save()
+    if friend_remover.friends:
+        if friend.username in friend_remover.friends:
+            friend_remover.friends.remove(friend.username)
+            friend_remover.save()
 
     return redirect('profile', pk=friend_remover.pk)
