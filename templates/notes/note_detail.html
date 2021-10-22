@@ -10,7 +10,7 @@
 {% block body_block %}
         <nav>
         <div id="navig-div">
-            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/cover.svg"%}" width="370" id='logo'></a>
+            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/logo.png" %}" width="370" id='logo'></a>
             <div id="navig-links">
                 <a href="#">Find notes</a>
                 <a href="{% url 'profile' pk=note.author.pk %}">Go back</a>

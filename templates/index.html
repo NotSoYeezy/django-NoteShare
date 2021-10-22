@@ -7,7 +7,7 @@
 {% block body_block %}
     <nav style="position: -webkit-sticky; position: sticky; top: 10px;">
         <div id="nav-cont">
-            <img src="{%static "images/cover.svg"%}" width="370" id='logo'>
+            <img src="{%static "images/logo.png" %}" id='logo'>
             <div id='nav-links'>
                 <a href="{% url 'search:note_search' %}">Find notes <i class="fas fa-sticky-note"></i></a>
                 {%if user.is_authenticated%}

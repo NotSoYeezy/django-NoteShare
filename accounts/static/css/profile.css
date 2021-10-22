@@ -74,6 +74,10 @@ p{
     align-items: center;
 }
 
+#logo{
+    height: 220px;
+}
+
 #logo-a{
     margin-right: auto;
 }
