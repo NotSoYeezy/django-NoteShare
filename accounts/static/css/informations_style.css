@@ -1,0 +1,34 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+#infoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#textDiv{
+    max-width: 550px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#textDiv p{
+    font-weight: 450;
+    text-align: justify;
+}
+
+#textDiv a{
+    text-decoration: none;
+    color: #cb45f7;
+    font-weight: 400;
+}
+
+#textDiv a:hover{
+    opacity: 0.5;
+}

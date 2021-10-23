@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/informations_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500;700;800;900&family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body_block %}
+        <nav>
+        <div id="navig-div">
+            <a href="{% url 'index' %}" id="logo-a"><img src="{%static "images/logo.png" %}" id='logo'></a>
+            <div id="navig-links">
+                <a href="{% url 'search:note_search' %}">Find notes <i class="fas fa-sticky-note"></i></a>
+                <a href="{% url 'information' %}">Informations <i class="fas fa-info-circle"></i></a>
+                {% if user.is_authenticated %}<a href="{% url 'search:user_search' %}">Find friends <i class="fas fa-user-friends"></i></a>
+                <a href="{% url 'profile' pk=user.pk %}">My Profile <i class="fas fa-user"></i></a>
+                <a href="{% url 'accounts:logout' %}" id="logInA">Logout <i style="margin-right: 10px" class="fas fa-sign-out-alt"></i></a>
+                {%else%}
+                <a href="{%url 'accounts:login'%}" id='slogInA'><i style="margin-right: 10px" class="fas fa-sign-in-alt"></i>Login</a>
+                <a href = "{% url 'accounts:register' %}" id='signUpA' ><i style="margin-right: 10px" class="fas fa-user-plus"></i>Signup</a>
+                {%endif%}
+            </div>
+        </div>
+    </nav>
+    <div id="infoContainer">
+        <img src="{% static 'images/Note.png' %}" width="200">
+        <h1>About NoteShare</h1>
+        <div id="textDiv">
+            <p><b>NoteShare</b> is a web application that I made with Django, to add something to my github portfolio,
+                was my first bigger app that I’ve created. Working on it  was a great
+                journey for me as a beginner django developer. Every time I wanted to implement
+                a functionality, I was learning a new concept, thing or technology.
+                It took me approximately 6 months to make this app look as I wanted it
+                to look. Of course, it’s not perfect, It definitely has some bugs -
+                bigger or smaller, however I hope that it will be forgiven (because of my
+                lack of experience). If you want to follow my programming journey, come to my <a href="https://github.com/NotSoYeezy" target="_blank">GitHub❤️</a>.</p>
+        </div>
+    </div>
+{% endblock %}
