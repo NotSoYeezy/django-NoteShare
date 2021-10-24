@@ -18,7 +18,7 @@ import django_heroku
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,9 +29,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 if DEBUG:
     ALLOWED_HOSTS = ['moja-witryna.com', 'localhost', '127.0.0.1', 'http://localhost:8000']
-
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'axes',
     'social_django',
     'django_extensions',
+    'NoteShare',
     'accounts',
     'notes',
     'search',
@@ -107,7 +108,7 @@ LOGOUT_REDIRECT_URL = ''
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -184,7 +185,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join('../accounts/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 STATICFILES_DIR = [
     STATIC_ROOT,
 ]
@@ -198,4 +199,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
