@@ -33,6 +33,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['moja-witryna.com', 'localhost', '127.0.0.1', 'http://localhost:8000']
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -185,10 +186,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'NoteShare/static')
 STATICFILES_DIR = [
     STATIC_ROOT,
 ]
+print(STATIC_ROOT)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -199,4 +201,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
