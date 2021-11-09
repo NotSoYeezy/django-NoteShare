@@ -42,6 +42,11 @@ Currently it's mainly focused on sharing and downloading school notes.
 
 ---
 
+## In progress:
+- Deploying app on heroku
+ 
+---
+
 ## Plans:
 - Adding more social platforms for Social OAuth
 - Adding chat between 2 users
