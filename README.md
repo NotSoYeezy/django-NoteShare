@@ -10,7 +10,7 @@
 * [Features](#features)
 * [Technologies](#technologies)
 * [Plans](#plans)
-
+* [In progress](#in-progress)
 --- 
 
 ## What is it?
@@ -40,6 +40,11 @@ Currently it's mainly focused on sharing and downloading school notes.
 - TravisCi
 - PyTest
 
+---
+
+## In progress:
+- Deploying app on heroku
+ 
 ---
 
 ## Plans:
