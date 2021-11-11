@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import django_heroku
+import dj_database_url
 
 load_dotenv()
 
@@ -27,11 +28,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 
 if DEBUG:
-    ALLOWED_HOSTS = ['moja-witryna.com', 'localhost', '127.0.0.1', 'http://localhost:8000']
+    ALLOWED_HOSTS = ['moja-witryna.com', 'localhost', '127.0.0.1', 'http://localhost:8000',
+                     'https://noteshare2021.herokuapp.com/']
 
 
 # Application definition
@@ -65,6 +67,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -190,7 +193,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'NoteShare/static')
 STATICFILES_DIR = [
     STATIC_ROOT,
 ]
-print(STATIC_ROOT)
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -200,5 +203,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)

@@ -1,0 +1,1 @@
+web: gunicorn NoteShare.wsgi --log-file -
