@@ -34,6 +34,8 @@ DEBUG = os.environ.get('DEBUG')
 if DEBUG:
     ALLOWED_HOSTS = ['moja-witryna.com', 'localhost', '127.0.0.1', 'http://localhost:8000',
                      'https://noteshare2021.herokuapp.com/']
+else:
+    ALLOWED_HOSTS = ['https://noteshare2021.herokuapp.com/']
 
 
 # Application definition
