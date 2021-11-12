@@ -8,12 +8,12 @@ class NoteCreateForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'noteInput'}))
     content_file = forms.FileField(widget=forms.FileInput(attrs={'id': 'file_field'}), required=False,
                                    validators=[check_file_size])
-    content_text = forms.CharField(widget=forms.Textarea(attrs={'id': 'note_text'}), required=False,)
+    description = forms.CharField(widget=forms.Textarea(attrs={'id': 'note_text'}), required=False,)
     thumbnail = forms.ImageField(validators=[check_file_size])
 
     class Meta:
         model = Note
-        fields = ('category', 'title', 'content_file', 'content_text', 'thumbnail')
+        fields = ('category', 'title', 'content_file', 'description', 'thumbnail')
 
 
 class RateForm(forms.ModelForm):
