@@ -43,7 +43,7 @@ Currently it's mainly focused on sharing and downloading school notes.
 ---
 
 ## In progress:
-- Deploying app on heroku
+- Adding Email confirmation when creating account
  
 ---
 
