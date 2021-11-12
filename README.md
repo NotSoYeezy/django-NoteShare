@@ -9,8 +9,9 @@
 * [What is it](#what-is-it?)
 * [Features](#features)
 * [Technologies](#technologies)
-* [Plans](#plans)
 * [In progress](#in-progress)
+* [Plans](#plans)
+
 --- 
 
 ## What is it?
