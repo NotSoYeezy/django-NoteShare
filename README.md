@@ -1,4 +1,4 @@
-# NoteShare [![BCH compliance](https://bettercodehub.com/edge/badge/NotSoYeezy/NoteShare?branch=master&token=13e5dd3ad8b0a2e9f42bdcf762202ca19eaaac9f)](https://bettercodehub.com/)[![Build Status](https://app.travis-ci.com/NotSoYeezy/django-NoteShare.svg?branch=master)](https://app.travis-ci.com/NotSoYeezy/django-NoteShare)
+# NoteShare
 
 <img src="Readme/logo.png" width='250'>
 
@@ -17,7 +17,7 @@
 ## What is it?
 Noteshare is a web-app made with Python web framework - Django.
 
-Currently it's mainly focused on sharing and downloading school notes.
+It's mainly focused on sharing and downloading school notes.
 
 ---
 
@@ -42,12 +42,3 @@ Currently it's mainly focused on sharing and downloading school notes.
 - PyTest
 
 ---
-
-## In progress:
-- Adding Email confirmation when creating account
- 
----
-
-## Plans:
-- Adding more social platforms for Social OAuth
-- Adding chat between 2 users
