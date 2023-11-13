@@ -56,3 +56,4 @@ tqdm==4.60.0
 urllib3==1.26.6
 Werkzeug==1.0.1
 whitenoise==5.3.0
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
